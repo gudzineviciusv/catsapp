@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View} from 'react-native';
 import styles from './HeaderStyles';
 
- const Header = ({ title, customHeaderColor, onReturn }) => {
+const TopHeader = ({ title }) => {
     
     return (
       <View style={styles.headerMain}>
@@ -10,5 +10,6 @@ import styles from './HeaderStyles';
       </View>
     );
   };
+
+  export default TopHeader;
   
-  export default Header;

@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {View} from 'react-native';
+import KittensList from './../screens/KittensList/KIttensList';
+import Loader from './../components/Loader/Loader';
 
-export class GlobalContainer extends React.Component {
+export default class GlobalContainer extends Component {
     state = {
-        currentScreen: "Loader",
-        kittenData: null
+        currentScreen: "KittenList",
+        kittenData: null,
+        kittenCount: 30
     }
 
     changeView = (view) => {
@@ -11,22 +15,30 @@ export class GlobalContainer extends React.Component {
     } 
 
     getKittenData = () => {
-        
+        fetch("http://placekitten.com/200/300").then(
+
+        )
     }
 
+    getCurrentScreen = () => {
+        switch (this.state.currentScreen) {
+            case 'KittenList':
+                return (
+                    <KittensList/>
+                    );
+            case 'DetailKittenView':
+                return (
+                      <KittensList/>
+                    );
+            case 'Loader':
+                return (
+                      <Loader isError={false} errorText="AAA"/>
+                    );
+            default: console.warn("loading");
+    }
+}
+
     render() {
-        const { currentScreen, kittenData } = this.state;
-
-        const store = {
-            users,
-            requestItems,
-            selectedColumnIndex,
-            highlightedColumnIndex,
-            statuses,
-            errors,
-            saving,
-        };
-
-        return this.props.children(store);
+        return (<View style={{flex: 1}}>{this.getCurrentScreen()}</View>);
     }
 }

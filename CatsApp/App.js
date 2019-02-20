@@ -1,24 +1,12 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- * @lint-ignore-every XPLATJSCOPYRIGHT1
- */
-
 import React, {Component} from 'react';
-import View from 'react-native';
+import {View} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import styles from './app/styles/styles.js'
+import GlobalContainer from './app/containers/globalContainer';
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
     return (
-      <React.Fragment>
-
-      
-      </React.Fragment>
+          <GlobalContainer />
     );
   }
 }

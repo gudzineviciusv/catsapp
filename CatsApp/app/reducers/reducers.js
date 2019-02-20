@@ -1,3 +1,5 @@
-import * as colors from './../../styles/color-variables';
+import {CATSAPP_GREEN, CATSAPP_WHITE, CATSAPP_BORDER} from './../styles/color-variables';
 
-export const COLORS = colors;
+const COLORS = {CATSAPP_GREEN, CATSAPP_WHITE, CATSAPP_BORDER};
+
+export default COLORS;
