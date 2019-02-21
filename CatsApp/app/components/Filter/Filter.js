@@ -11,7 +11,7 @@ const Filter = ({ options, onButtonPress }) => {
             <Section>
                 {options.map( value => {
                     return (
-                        <FilterButton value={value} onPress={onButtonPress} key={value}/>
+                        <FilterButton value={value} onPress={() => onButtonPress(value)} key={value}/>
                     )
                 })
                 }

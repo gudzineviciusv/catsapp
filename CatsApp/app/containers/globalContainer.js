@@ -3,15 +3,17 @@ import {View} from 'react-native';
 import KittensList from './../screens/KittensList/KIttensList';
 import Loader from './../components/Loader/Loader';
 import KITTENS from './../config/kittenNames';
+import DetailKittenView from '../screens/DetailKittenView/DetailKittenView';
 
 export default class GlobalContainer extends Component {
     state = {
         currentScreen: "Loader",
         kittenData: null,
+        kittenForPrev: null,
         kittenCount: 30
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getKittenData();
     }
 
@@ -20,35 +22,47 @@ export default class GlobalContainer extends Component {
     } 
 
     changeKittenCount = (count) => {
-        this.setState({ kittenCount: count });
+        this.setState({ kittenCount: count, isLoading: true});
+        this.getKittenData();
     }
 
     changeToKittenView = (catData) => {
+        this.setState({ kittenForPrev: catData });
+        this.changeView("DetailKittenView");
+    }
 
+    changeToKittenList = () => {
+        this.setState({ kittenForPrev: null });
+        this.changeView("KittenList");
     }
 
     getKittenData = () => {
         let catsArr = [];
-        for(let i=this.state.kittenCount +10; i > 10; i--) { // just for solid image rendering
-            catsArr.push({"image": `http://placekitten.com/200/3${i}`, "catData": KITTENS[Math.floor(Math.random()*KITTENS.length)]})
+        for(let i=this.state.kittenCount; i > 0; i--) {
+            catsArr.push({"image": `http://placekitten.com/200/3${Math.floor(Math.random()*50)  + 10}`, "catData": KITTENS[Math.floor(Math.random()*KITTENS.length)]})
         }
-        console.warn(catsArr);
-        this.setState({kittenData: catsArr, currentScreen: "KittenList"});
+        this.setState({kittenData: catsArr, isLoading: false, currentScreen: "KittenList"});
+        catsArr=[];
     }
 
     getCurrentScreen = () => {
+        const { kittenData, kittenForPrev, isLoading} = this.state;
         switch (this.state.currentScreen) {
             case 'KittenList':
                 return (
                     <KittensList 
                         changeKittensCount={this.changeKittenCount}
                         changeToKittenView={this.changeToKittenView}
-                        catList={this.state.kittenData}
+                        catList={kittenData}
                         />
                     );
             case 'DetailKittenView':
                 return (
-                      <KittensList/>
+                    
+                    <DetailKittenView 
+                        catData={kittenForPrev}
+                        onReturn={this.changeToKittenList}
+                      />
                     );
             case 'Loader':
                 return (

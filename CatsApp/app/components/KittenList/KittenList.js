@@ -9,7 +9,7 @@ const KittenList = ({ catList, onPress }) => {
             {
                 catList.map(cat => {
                     return (
-                        <KittenListItem image={cat.image} onPress={onPress} key={cat.catData.Name} name={cat.catData.Name} catData={catList}/>
+                        <KittenListItem image={cat.image} onPress={() => onPress(cat)} key={cat.catData.Name} name={cat.catData.Name} catData={cat}/>
                     )
                 })
             }
