@@ -1,1 +1,0 @@
-export const KITTEN_NAMES = ["Murkis", "Mumsis", "Rainys", "Betmanas", "Pumsė", "Tigrė", "Grikis"]

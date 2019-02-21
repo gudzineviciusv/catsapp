@@ -1,11 +1,28 @@
+import React, {Dimensions} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import COLORS from './../../reducers/reducers';
 
-const styles = EStyleSheet.create({
+const HeaderStyles = EStyleSheet.create({
     headerMain: {
-      width: '100%',
-      height: '10vh',
+      height: '10%',
+      width: Dimensions.get('window').width,
       justifyContent: 'center',
-      alignItems: 'center',
+      paddingLeft: 10,
       backgroundColor: COLORS.CATSAPP_GREEN
-    }});
+    },
+    wrapperSection: {
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    headerTitle: {
+      fontSize: 20
+    },
+    headerWhitReturn: {
+      height: '10%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: COLORS.CATSAPP_GREEN
+    }
+  });
+
+    export default HeaderStyles;

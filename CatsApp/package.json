@@ -10,6 +10,7 @@
     "react": "16.6.3",
     "react-native": "0.58.5",
     "react-native-extended-stylesheet": "^0.11.1",
+    "react-native-responsive-layout": "^1.1.0",
     "react-native-scalable-image": "^0.5.0"
   },
   "devDependencies": {

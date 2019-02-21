@@ -1,15 +1,26 @@
 import React from 'react';
-import { Text, View} from 'react-native';
-import styles from './HeaderStyles';
+import { Text, TouchableOpacity} from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import HeaderStyles from './HeaderStyles';
+import { Grid, Section, Block } from 'react-native-responsive-layout';
 
-const TopHeader = ({ title }) => {
-    
+const Header = ({ title, onReturn }) => {
     return (
-      <View style={styles.headerMain}>
-            <Text>{title}</Text>
-      </View>
+      <Grid style={HeaderStyles.headerWhitReturn}>
+          <Section style={HeaderStyles.wrapperSection}>
+          {onReturn &&
+            <Block size="1/3">
+                <TouchableOpacity onPress={onReturn}>
+                  <Text style={HeaderStyles.headerTitle}>Return</Text>
+                </TouchableOpacity>
+            </Block>
+          }
+            <Block size={onReturn ? "1/3" : "1/1"} style={HeaderStyles.wrapperSection}>
+                <Text style={HeaderStyles.headerTitle}>{title}</Text>
+            </Block>
+          </Section>
+      </Grid>
     );
   };
-
-  export default TopHeader;
+  export default Header;
   
