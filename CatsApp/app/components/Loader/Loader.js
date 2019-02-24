@@ -7,12 +7,13 @@ import styles from './LoaderStyles';
     return (
       <View style={styles.headerMain}>
             {isError 
-            ?
-            <Image source={require("./../../assets/images/cat-loader.gif")} />
+            ?<React.Fragment>
+              <Image source={require("./../../assets/images/cat-loader.gif")} />
+              <Text>{errorText}</Text>
+            </React.Fragment>
             :
             <Image source={require("./../../assets/images/cat-error.gif")} />
             }
-            <Text>{errorText}</Text>
       </View>
     );
   };

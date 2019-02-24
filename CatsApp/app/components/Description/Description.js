@@ -7,11 +7,11 @@ const Description = ({ title, desc }) => {
     return (
         <View style={DescriptionStyles.container}>
             <View style={DescriptionStyles.imageWrappper}>
-                <Text>{title}</Text>
+                <Text style={DescriptionStyles.title}>{title}</Text>
             </View>
-            <View>
-                <ScrollView>
-                        <Text>{desc}</Text>
+            <View styles={DescriptionStyles.desc}>
+                <ScrollView styles={DescriptionStyles.desc}>
+                        <Text >{desc}</Text>
                 </ScrollView>
             </View>
         </View>

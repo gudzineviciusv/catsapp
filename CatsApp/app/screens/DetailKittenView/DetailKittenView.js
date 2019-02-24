@@ -9,7 +9,7 @@ const DetailKittenView = ({catData , onReturn}) => {
        return (
         <View style={styles.container}>
             <Header title={catData.catData.Name} onReturn={onReturn} />
-            <View>
+            <View style={styles.imageCenteration}>
                 <Image source={{uri: catData.image}} height={Dimensions.get('window').height -300}/>
             </View>
             <Description title={catData.catData.Name} desc={catData.catData.Description}/>

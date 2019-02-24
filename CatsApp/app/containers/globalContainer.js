@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {View, NetInfo } from 'react-native';
 import KittensList from './../screens/KittensList/KIttensList';
 import Loader from './../components/Loader/Loader';
 import KITTENS from './../config/kittenNames';
@@ -10,12 +10,28 @@ export default class GlobalContainer extends Component {
         currentScreen: "Loader",
         kittenData: null,
         kittenForPrev: null,
-        kittenCount: 30
+        kittenCount: 30,
+        isConnected: true
     }
 
     componentDidMount() {
         this.getKittenData();
+        NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
     }
+
+    componentWillUnmount() {
+        NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
+     }
+
+    handleConnectivityChange = isConnected => {
+        this.setState({ isConnected });
+        if(!this.state.isConnected) {
+             this.changeView("Loader")
+            }
+        else {
+            this.changeView("KittenList")
+        }
+      }
 
     changeView = (view) => {
         this.setState({ currentScreen: view });
@@ -66,7 +82,7 @@ export default class GlobalContainer extends Component {
                     );
             case 'Loader':
                 return (
-                      <Loader isError={false} errorText="AAA"/>
+                      <Loader isError={this.state.isConnected} errorText="Check internet connection"/>
                     );
             default: console.warn("loading");
     }

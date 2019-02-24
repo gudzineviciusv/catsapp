@@ -7,6 +7,13 @@ const DescriptionStyles = EStyleSheet.create({
     imageWrappper: {
         marginLeft: 'auto',
         marginRight: 'auto'
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold'
+    },
+    desc: {
+        marginLeft: 20
     }
   });
 
